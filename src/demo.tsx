@@ -15,7 +15,7 @@ export default function Demo() {
     editable: true,
   });
 
-  // No issue
+  // No issue, should error.
   const missingRequiredPropsShouldError = <GridActionsCellItem />;
 
   // No issue
@@ -23,31 +23,42 @@ export default function Demo() {
     <GridActionsCellItem label="some-label" showInMenu />
   );
 
-  // Issue with type definition
+  // No issue, should error.
   const unknownPropsShouldError = (
     <GridActionsCellItem
       label="some-label"
       showInMenu
-      unknown="should-error" // Does not error. Issue with type definition.
+      unknown="should-error"
     />
   );
 
-  // Issue with type definition
-  const componentPropsShouldNotError = (
+  // Issue. Should not error - requiredProp is required by TestComponent!
+  const requiredComponentPropsShouldNotError = (
     <GridActionsCellItem
       label="some-label"
       showInMenu
       component={TestComponent}
-      // requiredProp is not passed, but is required by TestComponent. Issue with type definition.
+      requiredProp={'should-not-error'}
+    />
+  )
+
+  // Issue. Should error -  requiredProp is required by TestComponent!
+  const missingRequiredComponentPropsShouldError = (
+    <GridActionsCellItem
+      label="some-label"
+      showInMenu
+      component={TestComponent}
     />
   );
 
-  const buttonBaseWithUnknownProps = (
-    <ButtonBase unknown="should-error-but-does-not!" />
+  // No issue with ButtonBase - correctly infers requiredProp is required.
+  const missingRequiredComponentPropsShouldErrorButtonBase = (
+    <ButtonBase component={TestComponent} />
   );
 
-  const buttonBaseWithCustomComponent = (
-    <ButtonBase component={TestComponent} requiredProp={true} />
+  // No issue with ButtonBase - correctly infers requiredProp is required.
+  const requiredComponentPropsShouldNotErrorButtonBase = (
+    <ButtonBase component={TestComponent} requiredProp={'should-not-error'} />
   );
 
   return (
@@ -58,9 +69,7 @@ export default function Demo() {
         rowHeight={38}
         checkboxSelection
         disableRowSelectionOnClick
-        rekt
       />
-      <ButtonBase requiredProp={true} />
     </Box>
   );
 }
