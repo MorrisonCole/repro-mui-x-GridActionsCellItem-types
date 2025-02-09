@@ -1,0 +1,28 @@
+{
+  "name": "xoriwzroko.github",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "@types/react": "19.0.8",
+    "@mui/material": "6.4.3",
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.0",
+    "@mui/x-data-grid": "7.26.0",
+    "@types/react-dom": "19.0.3",
+    "@mui/icons-material": "6.4.3",
+    "@mui/x-data-grid-pro": "7.26.0",
+    "@mui/x-data-grid-premium": "7.26.0",
+    "@mui/x-data-grid-generator": "7.26.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "react-scripts": "latest"
+  }
+}
